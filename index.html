@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        ul li{
+            list-style-type: none;
+        }
+        li ul{
+            display: none;
+        } 
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div class="tree">
+        <ul>
+            <li><i class="fa fa-caret-right"></i> <a href="#">First Level</a>
+                <ul>
+                    <li><a href="#">Second Level</a></li>
+                    <li><a href="#">Second Level</a></li>
+                    <li><a href="#">Second Level</a></li>
+                </ul>
+            </li>
+            <li><i class="fa fa-caret-right"></i> <a href="#">First Level</a>
+                <ul>
+                    <li><a href="#">Second Level</a></li>
+                    <li><a href="#">Second Level</a></li>
+                </ul>
+            </li>
+            <li><i class="fa fa-caret-right"></i> <a href="#">First Level</a>
+                <ul>
+                    <li><a href="#">Second Level</a></li>
+                    <li><a href="#">Second Level</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script>
+
+$(document).ready(function(){
+    $('.tree li').each(function(){
+        if($(this).children('ul').length > 0){
+            $(this).addClass('parent');
+        }
+    });
+    $('.tree li.parent > i.fa').click(function(){
+        if($(this).hasClass('fa-caret-right')){
+            $(this).removeClass('fa-caret-right').addClass('fa-caret-down');
+        }
+        else{
+            $(this).removeClass('fa-caret-down').addClass('fa-caret-right');
+        }
+        $(this).parent().toggleClass('active');
+        $(this).parent().children('ul').slideToggle('fast');
+    });
+});
+
+</script>
+
+</html>
